@@ -1,0 +1,123 @@
+/* styles.css */
+
+body {
+    font-family: Arial, MiSans, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.timeline {
+    max-width: 100%; /* 使用最大宽度 */
+    margin: 0 auto;
+    padding-left: 40px;
+    display: flex; /* 使用 Flexbox 布局 */
+}
+
+.collapsed .timeline-month {
+    max-height: 0; /* 折叠时将高度设置为0 */
+    transition: max-height 1s ease; /* 添加过渡动画 */
+}
+
+.timeline-year {
+    margin-right: 40px;
+    width: 200px; /* 固定年份区域宽度 */
+    position: sticky; /* 兼容性更好的 sticky 定位 */
+    top: 0; /* 固定在顶部 */
+    z-index: 2; /* 提高层级以确保年份在内容之上 */
+    flex-shrink: 0; /* 防止在 Flexbox 布局中被缩小 */
+}
+
+.timeline-year h2 {
+    position: sticky; /* 元素固定定位 */
+    top: 0; /* 距离顶部的距离 */
+    background-color: #fff; /* 需要设置背景色以确保固定效果 */
+    z-index: 2; /* 提高层级以确保在内容之上 */
+}
+
+
+.timeline-month {
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 1s ease;
+    flex-grow: 1; /* 使用剩余空间 */
+}
+
+.timeline-item {
+    position: relative;
+    padding: 20px;
+    border-left: 2px solid #ccc;
+    transition: opacity 1s, transform 1s;
+    will-change: opacity, transform; /* 优化动画 */
+}
+
+.timeline-content h4 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.timeline-content p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.timeline-content img {
+    display: block;
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+.year-toggle,
+.month-toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .timeline {
+        flex-direction: column; /* 在小屏幕上使用列布局 */
+    }
+
+    .timeline-year {
+        margin-right: 0;
+        margin-bottom: 20px; /* 适当增加年份与内容之间的间距 */
+        width: auto;
+        position: relative; /* 取消固定定位 */
+    }
+}
+
+.image-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
+    display: none; /* 初始隐藏 */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.enlarged-image {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease; /* 定义渐变动画 */
+}
+
+.fade-in.show {
+    opacity: 1;
+}

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Life</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="timeline" id="timeline">
+    <!-- Timeline Items -->
+</div>
+
+<script>
+    const timelineData = [
+    {
+      year: '2021',
+      months: [
+        {
+          month: 'January',
+          events: [
+            { date: '1st', content: 'New Year\'s Day' },
+            { date: '20th', content: 'Inauguration of Joe Biden as the 46th President of the United States' }
+          ]
+        },
+        {
+          month: 'February',
+          events: [
+            { date: '14th', content: 'Valentine\'s Day' },
+            { date: '18th', content: 'Chinese New Year', image: 'pics/20210218.jpg' }
+          ]
+        },
+        {
+          month: 'March',
+          events: [
+            { date: '8th', content: 'International Women\'s Day' },
+            { date: '17th', content: 'St. Patrick\'s Day' }
+          ]
+        },
+        {
+          month: 'April',
+          events: [
+            { date: '1st', content: 'April Fool\'s Day' },
+            { date: '22nd', content: 'Earth Day' }
+          ]
+        },
+        {
+          month: 'May',
+          events: [
+            { date: '1st', content: 'May Day' },
+            { date: '9th', content: 'Mother\'s Day' }
+          ]
+        },
+        {
+          month: 'June',
+          events: [
+            { date: '20th', content: 'Juneteenth' },
+            { date: '21st', content: 'Summer Solstice' }
+          ]
+        },
+        {
+          month: 'July',
+          events: [
+            { date: '4th', content: 'Independence Day' },
+            { date: '23rd', content: 'Tokyo Olympics Opening Ceremony' }
+          ]
+        },
+        {
+          month: 'August',
+          events: [
+            { date: '13th', content: 'Left-Handers Day' },
+            { date: '23rd', content: 'Summer Paralympics Opening Ceremony' }
+          ]
+        },
+        {
+          month: 'September',
+          events: [
+            { date: '11th', content: '9/11 Memorial and Museum 20th Anniversary' },
+            { date: '22nd', content: 'Autumn Equinox' }
+          ]
+        },
+        {
+          month: 'October',
+          events: [
+            { date: '31st', content: 'Halloween' }
+          ]
+        },
+        {
+          month: 'November',
+          events: [
+            { date: '11th', content: 'Veterans Day' },
+            { date: '25th', content: 'Thanksgiving Day' }
+          ]
+        },
+        {
+          month: 'December',
+          events: [
+            { date: '25th', content: 'Christmas Day' },
+            { date: '31st', content: 'New Year\'s Eve' }
+          ]
+        }
+      ]
+    },
+    // Add more years and months as needed
+    {
+      year: '2022',
+      months: [
+        {
+          month: '2月',
+          events: [
+            { date: '4日', content: '北京冬奥会开幕' }
+          ]
+        },
+        {
+          month: '3月',
+          events: [
+            { date: '12日', content: '十三届全国人大五次会议闭幕' }
+          ]
+        },
+        {
+          month: '4月',
+          events: [
+            { date: '25日', content: '中俄领导人举行视频会晤' }
+          ]
+        },
+        {
+          month: '5月',
+          events: [
+            { date: '1日', content: '中国空间站天和核心舱发射成功' }
+          ]
+        },
+        {
+          month: '6月',
+          events: [
+            { date: '1日', content: '六一国际儿童节' }
+          ]
+        },
+        {
+          month: '7月',
+          events: [
+            { date: '1日', content: '中国共产党成立101周年' }
+          ]
+        },
+        {
+          month: '8月',
+          events: [
+            { date: '1日', content: '建军节' }
+          ]
+        },
+        {
+          month: '9月',
+          events: [
+            { date: '10日', content: '教师节' }
+          ]
+        },
+        {
+          month: '10月',
+          events: [
+            { date: '1日', content: '国庆节' }
+          ]
+        },
+        {
+          month: '11月',
+          events: [
+            { date: '11日', content: '双十一购物狂欢节' }
+          ]
+        },
+        {
+          month: '12月',
+          events: [
+            { date: '25日', content: '圣诞节', image: 'pics/20221225.jpg' }
+          ]
+        }
+      ]
+    }
+    // Add more years and months as needed
+  ];
+
+    const timeline = document.getElementById('timeline');
+
+timelineData.forEach(yearData => {
+    const yearContainer = document.createElement('div');
+    yearContainer.className = 'timeline-year';
+    yearContainer.innerHTML = `<h2 class="year-toggle">${yearData.year}</h2>`;
+
+    yearData.months.forEach(monthData => {
+        const monthContainer = document.createElement('div');
+        monthContainer.className = 'timeline-month';
+        monthContainer.innerHTML = `<h3 class="month-toggle">${monthData.month}</h3>`;
+
+        monthData.events.forEach((event, index) => {
+            const eventItem = document.createElement('div');
+            eventItem.className = 'timeline-item';
+            eventItem.innerHTML = `
+                <div class="timeline-content">
+                    <h4>${event.date}</h4>
+                    <p>${event.content}</p>
+                    ${event.image ? `<img src="${event.image}" alt="Event Image">` : ''}
+                </div>
+            `;
+            
+              eventItem.style.opacity = '0';
+              eventItem.style.transform = 'scale(0.9)';
+
+            monthContainer.appendChild(eventItem);
+        });
+
+        yearContainer.appendChild(monthContainer);
+    });
+
+    timeline.appendChild(yearContainer);
+});
+
+// Add toggle functionality for years
+const yearToggles = document.querySelectorAll('.year-toggle');
+yearToggles.forEach(toggle => {
+    toggle.addEventListener('click', function() {
+        const yearContainer = toggle.parentElement;
+        yearContainer.classList.toggle('collapsed');
+    });
+});
+
+// Add toggle functionality for months
+const monthToggles = document.querySelectorAll('.month-toggle');
+monthToggles.forEach(toggle => {
+    toggle.addEventListener('click', function() {
+        const monthContainer = toggle.parentElement;
+        monthContainer.classList.toggle('collapsed');
+    });
+});
+
+const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+        const itemTop = item.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (itemTop < windowHeight * 0.9 ) {
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+        }
+    });
+// Add fade-in animation
+window.addEventListener('scroll', () => {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+        const itemTop = item.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (itemTop < windowHeight * 0.9 ) {
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+        }
+    });
+});
+
+const images = document.querySelectorAll('.timeline-item img');
+const imageContainer = document.createElement('div');
+imageContainer.className = 'image-container';
+imageContainer.innerHTML = '<img class="enlarged-image" src="" alt=""><span class="close-button">&times;</span>';
+document.body.appendChild(imageContainer);
+
+const enlargedImage = document.querySelector('.enlarged-image');
+const closeButton = document.querySelector('.close-button');
+
+images.forEach(image => {
+    image.addEventListener('click', function() {
+        enlargedImage.src = image.src;
+        imageContainer.style.display = 'flex'; // 显示放大图片容器
+    });
+});
+
+closeButton.addEventListener('click', function() {
+    imageContainer.style.display = 'none'; // 隐藏放大图片容器
+});
+
+</script>
+
+</body>
+</html>
