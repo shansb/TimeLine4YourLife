@@ -1,8 +1,6 @@
 # Time Line for Your Life
 > 个人事件记录时间轴
 
-demo: https://site-production-0925.up.railway.app/
-
 <p align = "left">
 <img src='mobile.png' width='403' height='722'>
 </p>
